@@ -1,9 +1,15 @@
-﻿//Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента
+//Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента
 // или указание, что такого элемента нет.
 int numberLine = UserInput("Количество строк в новой таблице = ");
 int numberColumb = UserInput("Количество столбцов в новой таблице = ");
-int maximum = UserInput("Введите максимальное значение = ");
 int minimum = UserInput("Введите минимальное значение = ");
+int maximum = UserInput("Введите максимальное значение = ");
+double[,] createRandomDoubleMatrix = CreateRandomDoubleMatrix(numberLine, numberColumb, minimum, maximum);
+PrintArrayMatrix(createRandomDoubleMatrix, numberLine, numberColumb);
+Console.Write("Для поиска значения элемента в заданном массиве ");
+int findlinePos = UserInput("Введите номер строки = ");
+int findcolumbPos = UserInput("Введите номер столбца = ");
+FindMeanMatrix(createRandomDoubleMatrix, findlinePos, findcolumbPos);
 double[,] CreateRandomDoubleMatrix(int line, int columb, int min, int max)
 {
     double[,] matrix = new double[line, columb];
@@ -23,7 +29,6 @@ int UserInput(string massage)
     int result = Convert.ToInt32(value);
     return result;
 }
-double[,] createRandomDoubleMatrix = CreateRandomDoubleMatrix(numberLine, numberColumb, minimum, maximum);
 void PrintArrayMatrix(double[,] matrix, int line, int columb)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
@@ -35,13 +40,9 @@ void PrintArrayMatrix(double[,] matrix, int line, int columb)
         Console.WriteLine();
     }
 }
-PrintArrayMatrix(createRandomDoubleMatrix, numberLine, numberColumb);
-Console.Write("Для поиска значения элемента в массиве");
-int findlinePos = UserInput("Введите номер строки =");
-int findcolumbPos = UserInput("Введите номер столбца =");
 void FindMeanMatrix(double[,] matrix, int line, int columb)
 {
-    if (line <= matrix.GetLength(0) && columb <= matrix.GetLength(1))
+    if (line <= matrix.GetLength(0) && columb <= matrix.GetLength(1) && line > 0 && columb > 0)
     {
         Console.WriteLine($"Значение искомого элемента {matrix[line - 1, columb - 1]}");
     }
@@ -50,4 +51,4 @@ void FindMeanMatrix(double[,] matrix, int line, int columb)
         Console.Write("Такого элемента не существует");
     }
 }
-FindMeanMatrix(createRandomDoubleMatrix, findlinePos, findcolumbPos);
+
